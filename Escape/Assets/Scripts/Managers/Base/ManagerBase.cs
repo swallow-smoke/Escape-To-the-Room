@@ -1,7 +1,7 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Managers
+namespace Managers.Base
 {
     public abstract class ManagerBase : MonoBehaviour
     {

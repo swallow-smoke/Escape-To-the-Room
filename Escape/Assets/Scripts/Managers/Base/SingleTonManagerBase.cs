@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Managers
+namespace Managers.Base
 {
     public abstract class SingletonManagerBase<T> : ManagerBase where T : MonoBehaviour
     {

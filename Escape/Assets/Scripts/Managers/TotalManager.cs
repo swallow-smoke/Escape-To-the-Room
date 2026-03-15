@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Managers;
+using Managers.Base;
 using UnityEngine;
 
 namespace Managers
@@ -15,10 +16,7 @@ namespace Managers
                 manager.Initialize();
             }
             
-            foreach (var manager in managers)
-            {
-                Debug.Log(manager);
-            }
+            DontDestroyOnLoad(gameObject);
         }
     }
 }

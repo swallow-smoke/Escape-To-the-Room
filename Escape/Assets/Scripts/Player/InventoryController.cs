@@ -20,7 +20,5 @@ namespace Player
 
             Instance = this;
         }
-        
-        
     }
 }
