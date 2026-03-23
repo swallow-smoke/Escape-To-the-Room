@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Managers;
 using UI.AutoBinder;
@@ -8,8 +8,9 @@ namespace UI
 {
     public abstract class UIBase : MonoBehaviour, IUIProvider
     {
-        protected virtual void Awake()
+        protected virtual void Start()
         {
+            UIManager.Instance.Register(this);
             UIBinder.Bind(this, this);
         }
 
@@ -38,16 +39,6 @@ namespace UI
         protected T Get<T>(int index) where T : UnityEngine.Object
         {
             return _objects[typeof(T)][index] as T;
-        }
-
-        protected virtual void Open()
-        {
-            this.gameObject.SetActive(true);
-        }
-
-        protected virtual void Close()
-        {
-            this.gameObject.SetActive(false);
         }
     }
 }

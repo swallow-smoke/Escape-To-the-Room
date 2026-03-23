@@ -1,4 +1,4 @@
-﻿using Player;
+﻿using Controller;
 using UnityEngine;
 
 namespace Data.Items

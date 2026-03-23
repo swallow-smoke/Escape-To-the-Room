@@ -1,4 +1,5 @@
 ﻿using Data.Object;
+using Data.Object.Interface;
 using Managers.Base;
 using UnityEngine;
 
@@ -15,11 +16,11 @@ namespace Managers
         
         public void HandleInteractionInCharacter(Transform position)
         {
-            Vector2 direction = position.right * Input.GetAxisRaw("Horizontal");
+            Vector2 direction = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
             RaycastHit2D hit = Physics2D.Raycast(position.position, direction, raycastDistance, tileLayer);
 
             if (hit.collider != null)
-            {
+            {   
                 ISelectable selectable = hit.collider.GetComponent<ISelectable>();
 
                 if (selectable != null)

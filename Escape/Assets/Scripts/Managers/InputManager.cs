@@ -1,6 +1,6 @@
-﻿using Data.Object;
+﻿using Controller;
+using Data.Object;
 using Managers.Base;
-using Player;
 using UnityEngine;
 
 namespace Managers
@@ -17,7 +17,7 @@ namespace Managers
             PlayerController.instance.HandleMovement();
             PlayerController.instance.HandleInput();
             
-            if (Input.GetKeyDown(Esc)) UIManager.Instance.ToggleESC();
+            
             if (Input.GetKeyDown(Interaction)) SelectManager.Instance.HandleInteractionInCharacter(transform);
             if (Input.GetMouseButtonDown(0)) SelectManager.Instance.HandleInteractionInMouse(transform);
         }
