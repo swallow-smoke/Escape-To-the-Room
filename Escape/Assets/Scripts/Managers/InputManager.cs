@@ -20,6 +20,7 @@ namespace Managers
             
             if (Input.GetKeyDown(Interaction)) SelectManager.Instance.HandleInteractionInCharacter(transform);
             if (Input.GetMouseButtonDown(0)) SelectManager.Instance.HandleInteractionInMouse(transform);
+            if (Input.GetKeyDown(Esc)) UIManager.Instance.ToggleUI(UIManager.Instance.GetUIByName("EscPanel"));
         }
     }
 }

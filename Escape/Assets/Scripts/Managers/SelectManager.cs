@@ -12,11 +12,26 @@ namespace Managers
         [SerializeField] private LayerMask tileLayer;
         [SerializeField] public GameObject SelectedObject;
         [SerializeField] private float raycastDistance = 5;
+        private Vector2 direction = Vector2.right;
 
         
         public void HandleInteractionInCharacter(Transform position)
         {
-            Vector2 direction = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
+            float h = Input.GetAxisRaw("Horizontal");
+            float v = Input.GetAxisRaw("Vertical");
+
+            if (h != 0 || v != 0)
+            {
+                if (Mathf.Abs(h) >= Mathf.Abs(v))
+                {
+                    direction = new Vector2(h > 0 ? 1 : -1, 0);
+                }
+                else
+                {
+                    direction = new Vector2(0, v > 0 ? 1 : -1);
+                }
+            }
+            Debug.DrawRay(position.position, direction, color:Color.red);
             RaycastHit2D hit = Physics2D.Raycast(position.position, direction, raycastDistance, tileLayer);
 
             if (hit.collider != null)
