@@ -10,6 +10,7 @@ namespace Data.Items
         [SerializeField] public string description;
         [SerializeField] public string itemName;
         [SerializeField] public int id;
+        [SerializeField] public Sprite sprite;
 
         public bool Use(PlayerController player)
         {

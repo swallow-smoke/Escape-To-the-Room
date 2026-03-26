@@ -23,9 +23,14 @@ namespace Data.Object.StructureDatas
         {
             var ui = UIManager.Instance.GetUIByName(ownName);
 
-            if (ui != null)
+            switch (type)
             {
-                UIManager.Instance.ToggleUI(ui);
+                case ActionType.Toggle:
+                    UIManager.Instance.ToggleUI(ui);
+                    break;
+                default: 
+                    UIManager.Instance.ToggleUI(ui); 
+                    break;
             }
         }
     }

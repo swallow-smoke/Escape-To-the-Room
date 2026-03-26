@@ -11,7 +11,7 @@ namespace Managers
     {
         [SerializeField] public UIDatas uis;
 
-        private Dictionary<Type, UIBase> UILists;
+        private Dictionary<Type, UIBase> UILists = new Dictionary<Type, UIBase>();
 
         public override void Initialize()
         {
