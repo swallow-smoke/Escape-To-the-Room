@@ -1,99 +1,68 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Managers.Base;
 using UI;
-using UI.AutoBinder;
+using UI.Panel;
 using UnityEngine;
 
 namespace Managers
 {
-    public class UIManager : SingletonManagerBase<UIManager>, IUIProvider
+    public class UIManager : SingletonManagerBase<UIManager>
     {
-        [SerializeField] public UIDatas uis;
-
-        private Dictionary<Type, UIBase> UILists = new Dictionary<Type, UIBase>();
+        [SerializeField] private List<PanelList> _panels;
+        [SerializeField] private GameObject _statusText;
+        private Stack<PanelBase> panels;
 
         public override void Initialize()
         {
             base.Initialize();
-
-            UILists = new Dictionary<Type, UIBase>();
-
-            foreach (var data in uis.guiDatas)
+            panels = new Stack<PanelBase>();
+            _panels.ForEach(panel => panel.panel.Init());
+        }
+        
+        public void TogglePanel(string name)
+        {
+            var panelData = _panels.Find(p => p.name == name);
+            if (panelData == null)
             {
-                if (data.ui == null || data.type == null)
+                Debug.LogWarning($"Panel {name} not found.");
+                return;
+            }
+
+            var panel = panelData.panel;
+
+            if (panel.gameObject.activeSelf)
+            {
+                panel.TogglePanel();
+
+                if (panels.Contains(panel))
                 {
-                    Debug.LogWarning("UIData에 null 있음");
-                    continue;
+                    var tempStack = new Stack<PanelBase>();
+
+                    while (panels.Count > 0)
+                    {
+                        var p = panels.Pop();
+                        if (p != panel)
+                            tempStack.Push(p);
+                    }
+
+                    while (tempStack.Count > 0)
+                        panels.Push(tempStack.Pop());
                 }
-
-                UILists[data.type] = data.ui;
-                data.ui.gameObject.SetActive(false);
             }
-        }
-
-        public void ToggleUI<T>() where T : UIBase
-        {
-            var ui = GetUI<T>();
-            if (ui == null)
+            else
             {
-                Debug.LogWarning($"{typeof(T)} UI 없음");
-                return;
+                panel.TogglePanel();
+                panels.Push(panel);
             }
-
-            ui.gameObject.SetActive(!ui.gameObject.activeSelf);
         }
+    }
 
-        public void ToggleUI(UIBase ui)
-        {
-            if (ui == null)
-            {
-                Debug.LogWarning("UI가 null임");
-                return;
-            }
-
-            ui.gameObject.SetActive(!ui.gameObject.activeSelf);
-        }
-
-        // 🔥 안전한 Get
-        public T GetUI<T>() where T : UIBase
-        {
-            if (UILists.TryGetValue(typeof(T), out var ui))
-                return ui as T;
-
-            return null;
-        }
-
-        public UIBase GetUI(Type type)
-        {
-            if (type == null) return null;
-
-            UILists.TryGetValue(type, out var ui);
-            return ui;
-        }
-
-        public void Register(UIBase ui)
-        {
-            if (ui == null) return;
-
-            UILists[ui.GetType()] = ui;
-        }
-
-        public UIBase GetUIByName(string name)
-        {
-            foreach (var pair in UILists)
-            {
-                if (pair.Value.name == name)
-                    return pair.Value;
-            }
-
-            return null;
-        }
-
-        public object GetUIElement(string name, Type type)
-        {
-            var ui = GetUI(type);
-            return ui;
-        }
+    [System.Serializable]
+    public class PanelList
+    {
+        public string name;
+        public PanelBase panel;
     }
 }

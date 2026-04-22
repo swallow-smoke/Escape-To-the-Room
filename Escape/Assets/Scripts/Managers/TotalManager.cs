@@ -9,7 +9,7 @@ namespace Managers
     {
         [SerializeField] private List<ManagerBase> managers = new List<ManagerBase>();
 
-        private void Start()
+        private void Awake()
         {
             foreach (var manager in managers)
             {

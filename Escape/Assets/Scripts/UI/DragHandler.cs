@@ -21,12 +21,12 @@ public class DragHandler : UIBase, IBeginDragHandler, IEndDragHandler, IDragHand
         startParent = transform.parent;
 
         GetComponent<CanvasGroup>().blocksRaycasts = false;
-        transform.SetParent(onDragParent);
+        transform.SetParent(onDragParent, true);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = Input.mousePosition;
+        transform.position = eventData.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)

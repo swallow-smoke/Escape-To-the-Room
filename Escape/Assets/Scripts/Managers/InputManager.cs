@@ -14,14 +14,14 @@ namespace Managers
 
         private void Update()
         {
-            PlayerController.instance.HandleMovement();
-            PlayerController.instance.HandleInput();
+            GameManager.Instance.PlayerController.HandleMovement();
+            GameManager.Instance.PlayerController.HandleInput();
             
             
             if (Input.GetKeyDown(Interaction)) SelectManager.Instance.HandleInteractionInCharacter(transform);
-            if (Input.GetMouseButtonDown(0)) SelectManager.Instance.HandleInteractionInMouse(transform);
-            if (Input.GetKeyDown(Esc)) UIManager.Instance.ToggleUI(UIManager.Instance.GetUIByName("EscPanel"));
-            if (Input.GetKeyDown(Inventory)) UIManager.Instance.ToggleUI(UIManager.Instance.GetUIByName("inventory"));
+            // if (Input.GetMouseButtonDown(0)) SelectManager.Instance.HandleInteractionInMouse(transform);
+            if (Input.GetKeyDown(Esc)) UIManager.Instance.TogglePanel("PauseMenu");
+            // if (Input.GetKeyDown(Inventory)) UIManager.Instance.ToggleUI(UIManager.Instance.GetUI("inventory"));
         }
     }
 }

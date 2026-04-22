@@ -8,13 +8,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - 
   - Water
   - UI
-  - Structures
-  - 
-  - 
-  - 
+  - Ground
+  - Structure
+  - Border
+  - UpperStructure
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1438209773
+    locked: 0
+  - name: UpperStructures
+    uniqueID: 2981021509
     locked: 0
   - name: UI
     uniqueID: 1045154451

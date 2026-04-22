@@ -11,6 +11,7 @@ namespace Data.Object
 
         public void OnSelect()
         {
+            if (actionData.Count < 0) return;
             foreach (var action in actionData)
             {
                 action.Execute(gameObject);

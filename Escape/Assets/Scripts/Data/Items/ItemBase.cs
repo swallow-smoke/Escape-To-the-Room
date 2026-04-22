@@ -14,8 +14,7 @@ namespace Data.Items
 
         public bool Use(PlayerController player)
         {
-            if (consumable) return true;
-            else return false;
+            return consumable ? true : false;
         }
     }
 }

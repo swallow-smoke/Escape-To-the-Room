@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3789301d90a4288b2e9c54e746b18f1, type: 3}
   m_Name: Statue
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 79532586, guid: 67eefa9a9132e2c41af5c5c3373eff88, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -31,6 +31,6 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 1
-  m_InstancedGameObject: {fileID: 0}
+  m_InstancedGameObject: {fileID: 3379860147889655949, guid: f12152235b121a146adf276c44e7d77b, type: 3}
   m_Flags: 1
   m_ColliderType: 1
